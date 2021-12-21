@@ -1,19 +1,19 @@
 package objpool
 
 type ObjPool[T any] struct {
-	pool  chan T
-	maxSz int
+	pool      chan T
+	maxSz     int
 	clearFunc func(*T)
 }
 
-func New[T any](max int,clear func(*T)) *ObjPool[T] {
-	objs := make(chan T,max)
-	for i:=0;i<max;i++{
+func New[T any](max int, clear func(*T)) *ObjPool[T] {
+	objs := make(chan T, max)
+	for i := 0; i < max; i++ {
 		objs <- *new(T)
 	}
 	return &ObjPool[T]{
-		pool:  objs,
-		maxSz: max,
+		pool:      objs,
+		maxSz:     max,
 		clearFunc: clear,
 	}
 }

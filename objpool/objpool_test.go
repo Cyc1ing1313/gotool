@@ -10,7 +10,7 @@ type Man struct {
 }
 
 func TestObjPool(t *testing.T) {
-	pool := New[Man](1,func(t *Man) {
+	pool := New[Man](1, func(t *Man) {
 		t.Age = 0
 		t.Name = "hhh"
 	})
